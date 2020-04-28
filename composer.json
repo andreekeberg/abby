@@ -1,0 +1,50 @@
+{
+    "name": "andreekeberg/abby",
+    "type": "library",
+    "description": "🙋‍♀️ Minimal A/B Testing Library",
+    "keywords": [
+        "ab test",
+        "ab testing",
+        "conficence",
+        "conversion rate",
+        "conversion ratio",
+        "conversions",
+        "false discovery rate",
+        "p-value",
+        "probability value",
+        "probability",
+        "ratio",
+        "sample size",
+        "sample",
+        "sequential testing",
+        "significance",
+        "split test",
+        "split testing",
+        "split-run",
+        "standard score",
+        "statistics",
+        "testing",
+        "two-sample",
+        "two-tailed",
+        "two-tailed test",
+        "z-score"
+    ],
+    "homepage": "https://github.com/andreekeberg/abby",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "André Ekeberg",
+            "email": "andre@pocketsize.se",
+            "homepage": "https://github.com/andreekeberg",
+            "role": "Developer"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Abby\\": "src/"
+        }
+    },
+    "require": {
+        "php": ">=5.4.0"
+    }
+}
