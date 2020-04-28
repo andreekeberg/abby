@@ -1,6 +1,8 @@
 # 🙋‍♀️ Abby
 
-Abby is a simple but powerful A/B testing library.
+[![Latest Stable Version](https://poser.pugx.org/andreekeberg/abby/v/stable)](https://packagist.org/packages/andreekeberg/abby) [![Total Downloads](https://poser.pugx.org/andreekeberg/abby/downloads)](https://packagist.org/packages/andreekeberg/abby) [![License](https://poser.pugx.org/andreekeberg/abby/license)](https://packagist.org/packages/andreekeberg/abby)
+
+Abby is a simple but powerful PHP A/B testing library.
 
 The library lets you easily setup your **experiments** and their **control** and **variation** groups, **track** your visitors and assign them to a group, get detailed statistics including recommended **sample sizes** and determining the confidence of your results, including when an experiment have achieved **statistical significance**.
 
