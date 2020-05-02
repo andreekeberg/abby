@@ -6,7 +6,7 @@ Abby is a simple, but powerful PHP A/B testing library.
 
 The library lets you easily setup tests (**experiments**), their control and variation **groups**, track your **users**, get detailed statistics (like recommended sample sizes, and determining the confidence of your **results**), including whether an experiment has achieved **statistical significance**.
 
-The winner (and confidence) is detemined using [Bayesian statistics](Bayesian_statistics), calculating the [p-value](https://en.wikipedia.org/wiki/P-value) of your results to check if the [null hypothesis](http://en.wikipedia.org/wiki/Null_hypothesis) can be rejected. An accompanying minimum [sample size](https://en.wikipedia.org/wiki/Sample_size_determination) is also calculated using a [two-tailed test](https://en.wikipedia.org/wiki/One-_and_two-tailed_tests) to control the [false discovery rate](https://en.wikipedia.org/wiki/False_discovery_rate).
+The winner (and confidence) is detemined using [Bayesian statistics](https://en.wikipedia.org/wiki/Bayesian_statistics), calculating the [p-value](https://en.wikipedia.org/wiki/P-value) of your results to check if the [null hypothesis](http://en.wikipedia.org/wiki/Null_hypothesis) can be rejected. An accompanying minimum [sample size](https://en.wikipedia.org/wiki/Sample_size_determination) is also calculated using a [two-tailed test](https://en.wikipedia.org/wiki/One-_and_two-tailed_tests) to control the [false discovery rate](https://en.wikipedia.org/wiki/False_discovery_rate).
 
 Abby is dependency free, and completely database agnostic, meaning it simply works with data you provide it with, and exposes a variety of methods for you to store the result in your own storage of choice.
 
