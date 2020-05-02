@@ -191,6 +191,10 @@ $summary = $result->getAll();
 * [Group](docs/Group.md)
 * [Result](docs/Result.md)
 
+## Contributing
+
+Read the [contribution guidelines](CONTRIBUTING.md).
+
 ## Changelog
 
 Refer to the [changelog](CHANGELOG.md) for a full history of the project.
