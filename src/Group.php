@@ -18,7 +18,7 @@ class Group
         $this->group = array_merge([
             'type' => null,
             'name' => null,
-            'size' => 0,
+            'views' => 0,
             'conversions' => 0,
             'winner' => null
         ], (array)$group);
@@ -90,25 +90,25 @@ class Group
     }
 
     /**
-     * Get group size
+     * Get group views
      * 
      * @return int
      */
-    public function getSize()
+    public function getViews()
     {
-        return $this->getValue('size');
+        return $this->getValue('views');
     }
 
     /**
-     * Set group size
+     * Set group views
      * 
-     * @param int $size
+     * @param int $views
      * 
      * @return self
      */
-    public function setSize($size)
+    public function setViews($views)
     {
-        return $this->setValue('size', $size);
+        return $this->setValue('views', $views);
     }
 
     /**
@@ -140,14 +140,14 @@ class Group
      */
     public function getConversionRate()
     {
-        $size = $this->getSize();
+        $views = $this->getViews();
         $conversions = $this->getConversions();
 
-        if (!$size || !$conversions) {
+        if (!$views || !$conversions) {
             return 0;
         }
 
-        return $conversions / $size;
+        return $conversions / $views;
     }
 
     /**

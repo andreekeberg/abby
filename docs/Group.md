@@ -1,6 +1,6 @@
 # Group
 
-This class is in charge of creating and handling the control and variation groups of an experiment, including getting and setting their values such as group type, size, number of conversions, and whether the group is the winning or losing variant.
+This class is in charge of creating and handling the control and variation groups of an experiment, including getting and setting their values such as group type, numbers of views and conversions, and whether the group is the winning or losing variant.
 
 | Name | Description |
 |------|-------------|
@@ -9,8 +9,8 @@ This class is in charge of creating and handling the control and variation group
 |[setValue](#groupsetvalue)|Set property value of group|
 |[getName](#groupgetname)|Get group name|
 |[setName](#groupsetname)|Set group name|
-|[getSize](#groupgetsize)|Get group size|
-|[setSize](#groupsetsize)|Set group size|
+|[getViews](#groupgetviews)|Get group views|
+|[setViews](#groupsetviews)|Set group views|
 |[getConversions](#groupgetconversions)|Get number of conversions for the group|
 |[setConversions](#groupsetconversions)|Set number of conversions for the group|
 |[getConversionRate](#groupgetconversionrate)|Get conversion rate for the group|
@@ -127,15 +127,15 @@ Set group name
 
 <hr />
 
-## Group::getSize  
+## Group::getViews  
 
 **Description**
 
 ```php
-public getSize (void)
+public getViews (void)
 ```
 
-Get group size 
+Get group views 
 
 **Parameters**
 
@@ -147,19 +147,19 @@ Get group size
 
 <hr />
 
-## Group::setSize  
+## Group::setViews  
 
 **Description**
 
 ```php
-public setSize (int $size)
+public setViews (int $views)
 ```
 
-Set group size 
+Set group views 
 
 **Parameters**
 
-* `(int) $size`
+* `(int) $views`
 
 **Return Values**
 
@@ -446,5 +446,3 @@ Define the group as the variation
 **Return Values**
 
 `self`
-
-<hr />

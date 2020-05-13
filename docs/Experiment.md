@@ -15,8 +15,8 @@ This class is in charge of managing your experiment, including configuring the n
 |[setControl](#experimentsetcontrol)|Define the control|
 |[getVariation](#experimentgetvariation)|Get the variation|
 |[setVariation](#experimentsetvariation)|Define the variation|
-|[getCoverage](#experimentgetcoverage)|Get experiment coverage|
-|[setCoverage](#experimentsetcoverage)|Set experiment coverage|
+|[getAllocation](#experimentgetallocation)|Get experiment allocation|
+|[setAllocation](#experimentsetallocation)|Set experiment allocation|
 |[getResult](#experimentgetresult)|Return a Result instance from the current experiment|
 
 ## Experiment::getID  
@@ -240,15 +240,15 @@ Define the variation
 
 <hr />
 
-## Experiment::getCoverage  
+## Experiment::getAllocation  
 
 **Description**
 
 ```php
-public getCoverage (void)
+public getAllocation (void)
 ```
 
-Get experiment coverage
+Get experiment allocation
 
 This is the percentual chance that a new user will be included in the experiment 
 
@@ -262,15 +262,15 @@ This is the percentual chance that a new user will be included in the experiment
 
 <hr />
 
-## Experiment::setCoverage  
+## Experiment::setAllocation  
 
 **Description**
 
 ```php
-public setCoverage (int $percent)
+public setAllocation (int $percent)
 ```
 
-Set experiment coverage 
+Set experiment allocation 
 
 This is the percentual chance that a new user will be included in the experiment 
 
@@ -301,5 +301,3 @@ Return a Result instance from the current experiment
 **Return Values**
 
 `Result`
-
-<hr />

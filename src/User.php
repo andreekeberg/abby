@@ -179,8 +179,12 @@ class User
      * 
      * @return self
      */
-    public function addExperiment(Experiment $experiment, $group = null, $converted = false)
-    {
+    public function addExperiment(
+        Experiment $experiment,
+        $group = null,
+        $viewed = false,
+        $converted = false
+    ) {
         // Setup user experiment array
         $userExperiment = (object)[
             'id' => $experiment->getID()
@@ -189,8 +193,9 @@ class User
         // Add group type if a group is set
         $userExperiment->group = $group ? $group->getType() : null;
 
-        // Only set converted value if the user is part of an experiment group
+        // Only set viewed and converted values if the user is part of an experiment group
         if ($group) {
+            $userExperiment->viewed = $viewed;
             $userExperiment->converted = $converted;
         }
 
@@ -202,7 +207,7 @@ class User
 
     /**
      * Determine is user should be a participant in an experiment, based on the
-     * experiments configured percentual coverage
+     * experiments configured percentual allocation
      * 
      * @param Experiment $experiment
      * 
@@ -210,18 +215,18 @@ class User
      */
     public function shouldParticipate(Experiment $experiment)
     {
-        // Get experiments percentual coverage
-        $coverage = $experiment->getCoverage();
+        // Get experiments percentual allocation
+        $allocation = $experiment->getAllocation();
 
-        // Return true if coverage is 100%
-        if ($coverage == 100) {
+        // Return true if allocation is 100%
+        if ($allocation == 100) {
             return true;
         }
 
         // Create an array of a 100 positive and negative numbers, based
-        // on the value of $coverage
+        // on the value of $allocation
         $slots = str_split(
-            str_repeat(1, $coverage) . str_repeat(0, 100 - $coverage)
+            str_repeat(1, $allocation) . str_repeat(0, 100 - $allocation)
         );
 
         // Shuffle all the slots
@@ -235,7 +240,7 @@ class User
      * Get a group that the used should be asssiged to, either the control
      * or variation (with a 50/50 chance)
      * 
-     * If the experiments coverage is below 100, its percentage value will be 
+     * If the experiments allocation is below 100, its percentage value will be 
      * used to determine if the user is assigned an experiment group at all
      * 
      * @param Experiment $experiment
@@ -251,6 +256,45 @@ class User
             // Otherwise return no group
             return null;
         }
+    }
+
+    /**
+     * Get whether a user has viewed a specific experiment
+     * 
+     * @param int $id Experiment ID
+     * 
+     * @return bool
+     */
+    public function hasViewed($id)
+    {
+        foreach ($this->experiments as $i => $experiment) {
+            if ($experiment->id == $id) {
+                if ($this->experiments[$i]->viewed) {
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
+
+    /**
+     * Set whether a user has viewed a specific experiment
+     * 
+     * @param int $id Experiment ID
+     * @param bool $viewed
+     * 
+     * @return self
+     */
+    public function setViewed($id, $viewed = true)
+    {
+        foreach ($this->experiments as $i => $experiment) {
+            if ($experiment->id == $id) {
+                $this->experiments[$i]->viewed = $viewed;
+            }
+        }
+
+        return $this;
     }
 
     /**

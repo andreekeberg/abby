@@ -6,7 +6,7 @@ class Experiment
 {
     private $id = null;
     private $name = null;
-    private $coverage = 100;
+    private $allocation = 100;
     private $groups = [];
     private $defaultGroups = [
         [
@@ -52,9 +52,9 @@ class Experiment
             $this->setName($config['name']);
         }
 
-        // Set coverage (if defined)
-        if (isset($config['coverage'])) {
-            $this->setCoverage($config['coverage']);
+        // Set allocation (if defined)
+        if (isset($config['allocation'])) {
+            $this->setAllocation($config['allocation']);
         }
     }
 
@@ -238,17 +238,17 @@ class Experiment
     }
 
     /**
-     * Get experiment coverage
+     * Get experiment allocation
      *
      * @return int
      */
-    public function getCoverage()
+    public function getAllocation()
     {
-        return $this->coverage;
+        return $this->allocation;
     }
 
     /**
-     * Set experiment coverage
+     * Set experiment allocation
      * 
      * This is the percentual chance that a new user will be included in the experiment
      *
@@ -256,13 +256,13 @@ class Experiment
      * 
      * @return self
      */
-    public function setCoverage($percent)
+    public function setAllocation($percent)
     {
         if ($percent < 0 || $percent > 100) {
             throw new \Exception('Invalid $percent (value must be between 0 and 100)');
         }
 
-        $this->coverage = round($percent);
+        $this->allocation = round($percent);
 
         return $this;
     }

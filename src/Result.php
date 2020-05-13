@@ -49,16 +49,16 @@ class Result
         $control = $this->experiment->getControl();
         $variation = $this->experiment->getVariation();
 
-        $controlSize = $control->getSize();
+        $controlViews = $control->getViews();
         $controlConversions = $control->getConversions();
         $controlConversionRate = $control->getConversionRate();
 
-        $variationSize = $variation->getSize();
+        $variationViews = $variation->getViews();
         $variationConversions = $variation->getConversions();
         $variationConversionRate = $variation->getConversionRate();
 
         if (
-             ($controlSize != 0 && $variationSize != 0) &&
+             ($controlViews != 0 && $variationViews != 0) &&
             !($controlConversions == 0 && $variationConversions == 0) &&
              $controlConversionRate !== $variationConversionRate
         ) {
@@ -74,13 +74,13 @@ class Result
 
             // If control is winner, flip experiment and control for the remaining calculations
             if ($winner === 0) {
-                list($controlSize, $variationSize) = array($variationSize, $controlSize);
+                list($controlViews, $variationViews) = array($variationViews, $controlViews);
                 list($crA, $crB) = array($crB, $crA);
             }
 
             // Calculate standard error
-            $seA = sqrt(($crA * (1 - $crA)) / $controlSize);
-            $seB = sqrt(($crB * (1 - $crB)) / $variationSize);
+            $seA = sqrt(($crA * (1 - $crA)) / $controlViews);
+            $seB = sqrt(($crB * (1 - $crB)) / $variationViews);
             
             $seDiff = sqrt(pow($seA, 2) + pow($seB, 2));
 
@@ -105,18 +105,18 @@ class Result
              * to consider the result statistically significant
              */
 
-            $significant = min($controlSize, $variationSize) >= $sampleSize ? $confident : false;
+            $significant = min($controlViews, $variationViews) >= $sampleSize ? $confident : false;
 
             $this->winner      = $winner;
             $this->confidence  = $confidence;
             $this->confident   = $confident;
-            $this->sampleSize   = $sampleSize;
+            $this->sampleSize  = $sampleSize;
             $this->significant = $significant;
         } else {
             $this->winner      = null;
             $this->confidence  = 0;
             $this->confident   = false;
-            $this->sampleSize   = INF;
+            $this->sampleSize  = INF;
             $this->significant = false;
         }
 
@@ -193,31 +193,40 @@ class Result
      */
     private function calculateSampleSize($controlConversionRate, $minimumConfidence, $miminumEffect)
     {
+        // We can't calculate a sample size without a conversion rate, so return an infinte number
         if ($controlConversionRate <= 0) {
             return INF;
         }
 
+        // Set conficence and effect for our calculations
         $confidence = 1 - $minimumConfidence;
         $effect = $controlConversionRate * ($miminumEffect / 100);
 
+        // Create a two-tailed test based on the minimum confidence and effect
         $c1 = $controlConversionRate;
         $c2 = $controlConversionRate - $effect;
         $c3 = $controlConversionRate + $effect;
 
-        $t = abs($effect);
+        // Get absolute value of the effect
+        $theta = abs($effect);
 
-        $v1 = $c1 * (1 - $c1) + $c2 * (1 - $c2);
-        $v2 = $c1 * (1 - $c1) + $c3 * (1 - $c3);
+        // Create to variances by swapping $c1 and $c2
+        $variance1 = $c1 * (1 - $c1) + $c2 * (1 - $c2);
+        $variance2 = $c1 * (1 - $c1) + $c3 * (1 - $c3);
 
-        $e1 = 2 * (1 - $confidence) * $v1 * log(1 + sqrt($v1) / $t) / ($t * $t);
-        $e2 = 2 * (1 - $confidence) * $v2 * log(1 + sqrt($v2) / $t) / ($t * $t);
+        // Look for the greatest absolute value of two possible sample estimates
+        $estimate1 = 2 * (1 - $confidence) * $variance1 * log(1 + sqrt($variance1) / $theta) / ($theta * $theta);
+        $estimate2 = 2 * (1 - $confidence) * $variance2 * log(1 + sqrt($variance2) / $theta) / ($theta * $theta);
 
-        $sampleSize = abs($e1) >= abs($e2) ? $e1 : $e2;
+        // Settle on the larger of the two calculated sizes to control the false discovery rate
+        $sampleSize = abs($estimate1) >= abs($estimate2) ? $estimate1 : $estimate2;
 
+        // If the calculated sample size is below zero or not a number, return an infinite number
         if ($sampleSize < 0 || !is_numeric($sampleSize)) {
             return INF;
         }
 
+        // Round result to a significant figure
         $n = round($sampleSize);
         $m = pow(10, 2 - floor(log($n) / log(10)) - 1);
 

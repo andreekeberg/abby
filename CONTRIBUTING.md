@@ -1,6 +1,6 @@
 # Contributing to Abby
 
-I want to make contributing to this project as easy and transparent as possible, whether it's:
+This document contains basic guidelines to make contributing to this project as easy and transparent as possible, whether it's:
 
 - Reporting a bug
 - Discussing the current state of the code
@@ -38,7 +38,7 @@ All bugs are tracked using GitHub issues to track public bugs. Report a bug by [
 
 ## Use a Consistent Coding Style
 
-I'm using the automatic formatter in the [PHP Intelephense](https://marketplace.visualstudio.com/items?itemName=bmewburn.vscode-intelephense-client) Visual Studio Code extension. 
+All code should follow the [PSR-12: Extended Coding Style](https://www.php-fig.org/psr/psr-12/)
 
 * 4 spaces for indentation rather than tabs
 * Newlines after opening curly brackets in classes and methods

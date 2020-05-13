@@ -48,6 +48,7 @@ $data = [
     [
         'id' => 1,
         'group' => 1,
+        'viewed' => true,
         'converted' => false
     ]
 ];
@@ -64,9 +65,8 @@ foreach ($data as $item) {
         'type' => $item['group']
     ]);
 
-    // Add the experiment (including their group and whether they have
-    // already converted) to our user instance
-    $user->addExperiment($experiment, $group, $item['converted']);
+    // Add the experiment (including their group, and whether they have viewed and converted)
+    $user->addExperiment($experiment, $group, $item['viewed'], $item['converted']);
 }
 ```
 
@@ -105,7 +105,10 @@ $data = [
     'id' => 1
 ];
 
-// If the user is part of the variation in our experiment
+// Record a view for the experiment in question
+$user->setViewed($data['id']);
+
+// If the user is part of the variation group
 if ($user->inVariation($data['id'])) {
     // Apply a custom class to an element, load a script, etc.
 }
@@ -119,8 +122,8 @@ $data = [
     'id' => 1
 ];
 
-// On a custom experiment goal, check if user is a participant and define a conversion
-if ($user->isParticipant($data['id'])) {
+// On a custom goal, check if user has viewed the experiment and define a conversion
+if ($user->hasViewed($data['id'])) {
     $user->setConverted($data['id']);
 }
 
@@ -138,12 +141,12 @@ $experiment = new Abby\Experiment([
     'groups' => [
         [
             'name' => 'Control',
-            'size' => 3000,
+            'views' => 3000,
             'conversions' => 300
         ],
         [
             'name' => 'Variation',
-            'size' => 3000,
+            'views' => 3000,
             'conversions' => 364
         ]
     ]
@@ -157,18 +160,18 @@ $winner = $result->getWinner();
 
 /**
  * Get whether we can be confident of the result (even if we haven't
- * reached the minimum group size for each variant)
+ * reached the minimum number of views for each variant)
  */
 
 $confident = $result->isConfident();
 
 /**
- * Get the minimum sample size required for each group to reach statistical
- * significance, given the control groups current conversion rate (based on
- * the configured minimumDetectableEffect)
+ * Get the minimum sample size (number of views) required for each group to
+ * reach statistical significance, given the control groups current conversion
+ * rate (based on the configured minimumDetectableEffect)
  */
 
-$minimum = $result->getMinimumGroupSize();
+$minimum = $result->getMinimumSampleSize();
 
 /**
  * Get whether the results are statistically significant

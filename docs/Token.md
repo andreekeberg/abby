@@ -162,5 +162,3 @@ This sends a cookie to the users browser with the configured settings, but with 
 **Return Values**
 
 `self`
-
-<hr />

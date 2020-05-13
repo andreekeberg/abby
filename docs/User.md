@@ -14,6 +14,8 @@ This class is in charge of managing your users, including associating them with 
 |[addExperiment](#useraddexperiment)|Add an experiment to the user's list of experiments|
 |[shouldParticipate](#usershouldparticipate)|Determine is user should be a participant in an experiment|
 |[assignGroup](#userassigngroup)|Get a group that the user should be asssiged to|
+|[hasViewed](#userhasviewed)|Get whether a user has viewed a specific experiment|
+|[setViewed](#usersetviewed)|Set whether a user has viewed a specific experiment|
 |[hasConverted](#userhasconverted)|Get whether a user has converted in a specific experiment|
 |[setConverted](#usersetconverted)|Set whether a user has converted in a specific experiment|
 
@@ -233,6 +235,49 @@ If the experiments coverage is below 100, it's percentage value will be used to 
 
 <hr />
 
+## User::hasViewed  
+
+**Description**
+
+```php
+public hasViewed (int $id)
+```
+
+Get whether a user has viewed a specific experiment 
+
+**Parameters**
+
+* `(int) $id`
+: Experiment ID  
+
+**Return Values**
+
+`bool`
+
+<hr />
+
+## User::setViewed  
+
+**Description**
+
+```php
+public setViewed (int $id, bool $viewed)
+```
+
+Set whether a user has viewed a specific experiment 
+
+**Parameters**
+
+* `(int) $id`
+: Experiment ID  
+* `(bool) $viewed`
+
+**Return Values**
+
+`self`
+
+<hr />
+
 ## User::hasConverted  
 
 **Description**
@@ -271,7 +316,3 @@ Set whether a user has converted in a specific experiment
 * `(bool) $converted`
 
 **Return Values**
-
-`self`
-
-<hr />

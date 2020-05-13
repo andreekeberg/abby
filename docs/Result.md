@@ -235,7 +235,7 @@ public isSignificant (void)
 
 Return whether the result is statistically significant 
 
-This requires both the confidence (alternative hypothesis, i.e the inverse of the p-value) to be high enough (based on the specified minimum confidence) that the null hypothesis can be rejected, and the size of both groups to be greater than or equal to the minimum sample size (which is in turn calculated based on the minimum detectable effect, and the conversion rate of the control group)
+This requires both the confidence (alternative hypothesis, i.e the inverse of the p-value) to be high enough (based on the specified minimum confidence) that the null hypothesis can be rejected, and the number of views for both groups to be greater than or equal to the minimum sample size (which is in turn calculated based on the minimum detectable effect, and the conversion rate of the control group)
 
 **Parameters**
 
@@ -264,5 +264,3 @@ Get complete results
 **Return Values**
 
 `object`
-
-<hr />
