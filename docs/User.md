@@ -174,7 +174,7 @@ Return whether the user belongs to the variation group of an experiment
 **Description**
 
 ```php
-public addExperiment (Experiment $experiment, Group|null $group, bool $converted)
+public addExperiment (Experiment $experiment, Group|null $group, bool $viewed, bool $converted)
 ```
 
 Add an experiment to the users list of experiments 
@@ -185,6 +185,7 @@ If no group is set, the experiment is added to to list without the user being as
 
 * `(Experiment) $experiment`
 * `(Group|null) $group`
+* `(bool) $viewed`
 * `(bool) $converted`
 
 **Return Values**
