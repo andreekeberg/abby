@@ -92,7 +92,7 @@ class User
     public function hasExperiment($experiment)
     {
         if ($experiment instanceof Experiment) {
-            $id = $experiment->id;
+            $id = $experiment->getID();
         } else if (is_int($experiment)) {
             $id = $experiment;
         } else {
@@ -122,7 +122,7 @@ class User
     public function isParticipant($experiment, $group = null)
     {
         if ($experiment instanceof Experiment) {
-            $id = $experiment->id;
+            $id = $experiment->getID();
         } else if (is_int($experiment)) {
             $id = $experiment;
         } else {
@@ -173,21 +173,31 @@ class User
      * 
      * If no group is set, the experiment is added to to list without the user being assigned a group
      * 
-     * @param Experiment $experiment
+     * @param Experiment|int $experiment Experiment instance or ID
      * @param Group|null $group
      * @param bool $converted
      * 
      * @return self
      */
     public function addExperiment(
-        Experiment $experiment,
+        $experiment,
         $group = null,
         $viewed = false,
         $converted = false
     ) {
+        if ($experiment instanceof Experiment) {
+            $id = $experiment->getID();
+        } else if (is_int($experiment)) {
+            $id = $experiment;
+        } else {
+            throw new \Exception(
+                'Invalid $experiment (type must be Abby\Experiment or int)'
+            );
+        }
+
         // Setup user experiment array
         $userExperiment = (object)[
-            'id' => $experiment->getID()
+            'id' => $id
         ];
 
         // Add group type if a group is set
