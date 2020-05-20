@@ -123,7 +123,7 @@ Set tracking token value
 **Description**
 
 ```php
-public setCookie (string|null $value, int|null $expires)
+public setCookie (string|null $value, int|string|null $expires)
 ```
 
 Set tracking cookie with the token name and value 
@@ -134,7 +134,7 @@ This sends a cookie to the users browser with the configured settings (and if pa
 
 * `(string|null) $value`
 : Defaults to configured value  
-* `(int|null) $expires`
+* `(int|string|null) $expires`
 : Defaults to current time plus configured max age
 
 **Return Values**

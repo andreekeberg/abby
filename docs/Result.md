@@ -42,14 +42,14 @@ Get the specified minimum confidence
 **Description**
 
 ```php
-public setMinimumConfidence (float $confidence)
+public setMinimumConfidence (float|string $confidence)
 ```
 
 Set the minimum confidence 
 
 **Parameters**
 
-* `(float) $confidence`
+* `(float|string) $confidence`
 
 **Return Values**
 
@@ -82,14 +82,14 @@ Get the specified minimum detectable effect
 **Description**
 
 ```php
-public setMinimumDetectableEffect (float $effect)
+public setMinimumDetectableEffect (float|string $effect)
 ```
 
 Set the minimum detectable effect 
 
 **Parameters**
 
-* `(float) $effect`
+* `(float|string) $effect`
 
 **Return Values**
 

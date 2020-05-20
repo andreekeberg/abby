@@ -246,13 +246,13 @@ class Result
     /**
      * Set the minimum confidence
      * 
-     * @param float $confidence
+     * @param float|string $confidence
      * 
      * @return self
      */
     public function setMinimumConfidence($confidence)
     {
-        $this->minimumConfidence = $confidence;
+        $this->minimumConfidence = (float)$confidence;
 
         return $this;
     }
@@ -270,13 +270,13 @@ class Result
     /**
      * Set the minimum detectable effect
      * 
-     * @param float $effect
+     * @param float|string $effect
      * 
      * @return self
      */
     public function setMinimumDetectableEffect($effect)
     {
-        $this->minimumDetectableEffect = $effect;
+        $this->minimumDetectableEffect = (float)$effect;
 
         return $this;
     }

@@ -112,7 +112,7 @@ class Token
      * passed, a custom value and expires timestamp)
      *
      * @param string|null $value Defaults to configured value
-     * @param int|null $expires Defaults to current time plus configured max age
+     * @param int|string|null $expires Defaults to current time plus configured max age
      * 
      * @return self
      */

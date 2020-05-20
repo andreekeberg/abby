@@ -93,16 +93,16 @@ class User
     {
         if ($experiment instanceof Experiment) {
             $id = $experiment->getID();
-        } else if (is_int($experiment)) {
-            $id = $experiment;
+        } else if (is_numeric($experiment)) {
+            $id = (int)$experiment;
         } else {
             throw new \Exception(
-                'Invalid $experiment (type must be Abby\Experiment or int)'
+                'Invalid $experiment (type must be Abby\Experiment or number)'
             );
         }
 
         foreach ($this->experiments as $item) {
-            if ($item->id == $id) {
+            if ($item->id === $id) {
                 return true;
             }
         }
@@ -114,8 +114,8 @@ class User
      * Return whether the user is a participant of an experiment (belongs to
      * either of the groups), and if passed, part of a specific group
      * 
-     * @param Experiment|int $experiment Experiment instance or ID
-     * @param int|null $group Group type (0 or 1)
+     * @param Experiment|int|string $experiment Experiment instance or ID
+     * @param int|string|null $group Group type (0 or 1)
      * 
      * @return bool
      */
@@ -123,19 +123,19 @@ class User
     {
         if ($experiment instanceof Experiment) {
             $id = $experiment->getID();
-        } else if (is_int($experiment)) {
-            $id = $experiment;
+        } else if (is_numeric($experiment)) {
+            $id = (int)$experiment;
         } else {
             throw new \Exception(
-                'Invalid $experiment (type must be Abby\Experiment or int)'
+                'Invalid $experiment (type must be Abby\Experiment or number)'
             );
         }
 
         foreach ($this->experiments as $item) {
-            if ($item->id == $id) {
+            if ($item->id === $id) {
                 if ($group === null && $item->group !== null) {
                     return true;
-                } else if ($group !== null && $item->group === $group) {
+                } else if ($group !== null && $item->group === (int)$group) {
                     return true;
                 }
             }
@@ -147,7 +147,7 @@ class User
     /**
      * Return whether the user belongs to the control group of an experiment
      * 
-     * @param Experiment|int $experiment Experiment instance or ID
+     * @param Experiment|int|string $experiment Experiment instance or ID
      * 
      * @return bool
      */
@@ -159,7 +159,7 @@ class User
     /**
      * Return whether the user belongs to the variation group of an experiment
      * 
-     * @param Experiment|int $experiment Experiment instance or ID
+     * @param Experiment|int|string $experiment Experiment instance or ID
      * 
      * @return bool
      */
@@ -173,7 +173,7 @@ class User
      * 
      * If no group is set, the experiment is added to to list without the user being assigned a group
      * 
-     * @param Experiment|int $experiment Experiment instance or ID
+     * @param Experiment|int|string $experiment Experiment instance or ID
      * @param Group|null $group
      * @param bool $converted
      * 
@@ -187,11 +187,11 @@ class User
     ) {
         if ($experiment instanceof Experiment) {
             $id = $experiment->getID();
-        } else if (is_int($experiment)) {
-            $id = $experiment;
+        } else if (is_numeric($experiment)) {
+            $id = (int)$experiment;
         } else {
             throw new \Exception(
-                'Invalid $experiment (type must be Abby\Experiment or int)'
+                'Invalid $experiment (type must be Abby\Experiment or number)'
             );
         }
 
@@ -205,8 +205,8 @@ class User
 
         // Only set viewed and converted values if the user is part of an experiment group
         if ($group) {
-            $userExperiment->viewed = $viewed;
-            $userExperiment->converted = $converted;
+            $userExperiment->viewed = (bool)$viewed;
+            $userExperiment->converted = (bool)$converted;
         }
 
         // Add to list of experiments
@@ -229,7 +229,7 @@ class User
         $allocation = $experiment->getAllocation();
 
         // Return true if allocation is 100%
-        if ($allocation == 100) {
+        if ($allocation === 100) {
             return true;
         }
 
@@ -271,14 +271,14 @@ class User
     /**
      * Get whether a user has viewed a specific experiment
      * 
-     * @param int $id Experiment ID
+     * @param int|string $id Experiment ID
      * 
      * @return bool
      */
     public function hasViewed($id)
     {
         foreach ($this->experiments as $i => $experiment) {
-            if ($experiment->id == $id) {
+            if ($experiment->id === (int)$id) {
                 if ($this->experiments[$i]->viewed) {
                     return true;
                 }
@@ -291,7 +291,7 @@ class User
     /**
      * Set whether a user has viewed a specific experiment
      * 
-     * @param int $id Experiment ID
+     * @param int|string $id Experiment ID
      * @param bool $viewed
      * 
      * @return self
@@ -299,7 +299,7 @@ class User
     public function setViewed($id, $viewed = true)
     {
         foreach ($this->experiments as $i => $experiment) {
-            if ($experiment->id == $id) {
+            if ($experiment->id === (int)$id) {
                 $this->experiments[$i]->viewed = $viewed;
             }
         }
@@ -310,14 +310,14 @@ class User
     /**
      * Get whether a user has converted in a specific experiment
      * 
-     * @param int $id Experiment ID
+     * @param int|string $id Experiment ID
      * 
      * @return bool
      */
     public function hasConverted($id)
     {
         foreach ($this->experiments as $i => $experiment) {
-            if ($experiment->id == $id) {
+            if ($experiment->id === (int)$id) {
                 if ($this->experiments[$i]->converted) {
                     return true;
                 }
@@ -330,7 +330,7 @@ class User
     /**
      * Set whether a user has converted in a specific experiment
      * 
-     * @param int $id Experiment ID
+     * @param int|string $id Experiment ID
      * @param bool $converted
      * 
      * @return self
@@ -338,7 +338,7 @@ class User
     public function setConverted($id, $converted = true)
     {
         foreach ($this->experiments as $i => $experiment) {
-            if ($experiment->id == $id) {
+            if ($experiment->id === (int)$id) {
                 $this->experiments[$i]->converted = $converted;
             }
         }

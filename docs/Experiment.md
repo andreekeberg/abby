@@ -267,7 +267,7 @@ This is the percentual chance that a new user will be included in the experiment
 **Description**
 
 ```php
-public setAllocation (int $percent)
+public setAllocation (int|string $percent)
 ```
 
 Set experiment allocation 
@@ -276,7 +276,7 @@ This is the percentual chance that a new user will be included in the experiment
 
 **Parameters**
 
-* `(int) $percent`
+* `(int|string) $percent`
 
 **Return Values**
 

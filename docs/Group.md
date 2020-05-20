@@ -152,14 +152,14 @@ Get group views
 **Description**
 
 ```php
-public setViews (int $views)
+public setViews (int|string $views)
 ```
 
 Set group views 
 
 **Parameters**
 
-* `(int) $views`
+* `(int|string) $views`
 
 **Return Values**
 
@@ -192,14 +192,14 @@ Get number of conversions for the group
 **Description**
 
 ```php
-public setConversions (int $conversions)
+public setConversions (int|string $conversions)
 ```
 
 Set number of conversions for the group 
 
 **Parameters**
 
-* `(int) $conversions`
+* `(int|string) $conversions`
 
 **Return Values**
 
@@ -334,14 +334,14 @@ Returns 0 for control, 1 for variation and null when type is unknown
 **Description**
 
 ```php
-public isType (int $type)
+public isType (int|string $type)
 ```
 
-Get whether the variation is a specific type 
+Get whether the variation is a specific type (0 or 1)
 
 **Parameters**
 
-* `(int) $type`
+* `(int|string) $type`
 
 **Return Values**
 
@@ -354,14 +354,14 @@ Get whether the variation is a specific type
 **Description**
 
 ```php
-public setType (int $type)
+public setType (int|string $type)
 ```
 
-Set group type 
+Set group type (0 or 1)
 
 **Parameters**
 
-* `(int) $type`
+* `(int|string) $type`
 
 **Return Values**
 

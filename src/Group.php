@@ -102,13 +102,13 @@ class Group
     /**
      * Set group views
      * 
-     * @param int $views
+     * @param int|string $views
      * 
      * @return self
      */
     public function setViews($views)
     {
-        return $this->setValue('views', $views);
+        return $this->setValue('views', (int)$views);
     }
 
     /**
@@ -124,13 +124,13 @@ class Group
     /**
      * Set number of conversions for the group
      * 
-     * @param int $conversions
+     * @param int|string $conversions
      * 
      * @return self
      */
     public function setConversions($conversions)
     {
-        return $this->setValue('conversions', $conversions);
+        return $this->setValue('conversions', (int)$conversions);
     }
 
     /**
@@ -203,27 +203,27 @@ class Group
     }
 
     /**
-     * Get whether the variation is a specific type
+     * Get whether the variation is a specific type (0 or 1)
      * 
-     * @param int $type
+     * @param int|string $type
      * 
      * @return bool
      */
-    public function isType(int $type)
+    public function isType($type)
     {
-        return $this->getType() === $type;
+        return $this->getType() === (int)$type;
     }
 
     /**
-     * Set group type
+     * Set group type (0 or 1)
      * 
-     * @param int $type
+     * @param int|string $type
      * 
      * @return self
      */
-    public function setType(int $type)
+    public function setType($type)
     {
-        return $this->setValue('type', $type);
+        return $this->setValue('type', (int)$type);
     }
 
     /**

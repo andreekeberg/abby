@@ -88,14 +88,14 @@ Get all user experiments
 **Description**
 
 ```php
-public hasExperiment (Experiment|int $experiment)
+public hasExperiment (Experiment|int|string $experiment)
 ```
 
 Return whether the user has an experiment in the list, regardless of whether the user actually is part of it 
 
 **Parameters**
 
-* `(Experiment|int) $experiment`
+* `(Experiment|int|string) $experiment`
 : Experiment instance or ID  
 
 **Return Values**
@@ -109,16 +109,16 @@ Return whether the user has an experiment in the list, regardless of whether the
 **Description**
 
 ```php
-public isParticipant (Experiment|int $experiment, int|null $group)
+public isParticipant (Experiment|int|string $experiment, int|string|null $group)
 ```
 
 Return whether the user is a participant of an experiment, and optionally, part of a specific group
 
 **Parameters**
 
-* `(Experiment|int) $experiment`
+* `(Experiment|int|string) $experiment`
 : Experiment instance or ID  
-* `(int|null) $group`
+* `(int|string|null) $group`
 : Group type (0 or 1)  
 
 **Return Values**
@@ -132,14 +132,14 @@ Return whether the user is a participant of an experiment, and optionally, part 
 **Description**
 
 ```php
-public inControl (Experiment|int $experiment)
+public inControl (Experiment|int|string $experiment)
 ```
 
 Return whether the user belongs to the control group of an experiment
 
 **Parameters**
 
-* `(Experiment|int) $experiment`
+* `(Experiment|int|string) $experiment`
 : Experiment instance or ID  
 
 **Return Values**
@@ -153,14 +153,14 @@ Return whether the user belongs to the control group of an experiment
 **Description**
 
 ```php
-public inVariation (Experiment|int $experiment)
+public inVariation (Experiment|int|string $experiment)
 ```
 
 Return whether the user belongs to the variation group of an experiment
 
 **Parameters**
 
-* `(Experiment|int) $experiment`
+* `(Experiment|int|string) $experiment`
 : Experiment instance or ID  
 
 **Return Values**
@@ -174,7 +174,7 @@ Return whether the user belongs to the variation group of an experiment
 **Description**
 
 ```php
-public addExperiment (Experiment|int $experiment, Group|null $group, bool $viewed, bool $converted)
+public addExperiment (Experiment|int|string $experiment, Group|null $group, bool $viewed, bool $converted)
 ```
 
 Add an experiment to the users list of experiments 
@@ -183,7 +183,7 @@ If no group is set, the experiment is added to to list without the user being as
 
 **Parameters**
 
-* `(Experiment|id) $experiment`
+* `(Experiment|id|string) $experiment`
 : Experiment instance or ID
 * `(Group|null) $group`
 * `(bool) $viewed`
@@ -242,14 +242,14 @@ If the experiments coverage is below 100, it's percentage value will be used to 
 **Description**
 
 ```php
-public hasViewed (int $id)
+public hasViewed (int|string $id)
 ```
 
 Get whether a user has viewed a specific experiment 
 
 **Parameters**
 
-* `(int) $id`
+* `(int|string) $id`
 : Experiment ID  
 
 **Return Values**
@@ -263,14 +263,14 @@ Get whether a user has viewed a specific experiment
 **Description**
 
 ```php
-public setViewed (int $id, bool $viewed)
+public setViewed (int|string $id, bool $viewed)
 ```
 
 Set whether a user has viewed a specific experiment 
 
 **Parameters**
 
-* `(int) $id`
+* `(int|string) $id`
 : Experiment ID  
 * `(bool) $viewed`
 
@@ -285,14 +285,14 @@ Set whether a user has viewed a specific experiment
 **Description**
 
 ```php
-public hasConverted (int $id)
+public hasConverted (int|string $id)
 ```
 
 Get whether a user has converted in a specific experiment 
 
 **Parameters**
 
-* `(int) $id`
+* `(int|string) $id`
 : Experiment ID  
 
 **Return Values**
@@ -306,14 +306,14 @@ Get whether a user has converted in a specific experiment
 **Description**
 
 ```php
-public setConverted (int $id, bool $converted)
+public setConverted (int|string $id, bool $converted)
 ```
 
 Set whether a user has converted in a specific experiment 
 
 **Parameters**
 
-* `(int) $id`
+* `(int|string) $id`
 : Experiment ID  
 * `(bool) $converted`
 

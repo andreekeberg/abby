@@ -115,11 +115,11 @@ class Experiment
      */
     private function mapGroup($key)
     {
-        if (is_string($key)) {
+        if (!is_numeric($key)) {
             $index = false;
 
             foreach ($this->groups as $i => $group) {
-                if ($group->getName() == $key) {
+                if ($group->getName() === $key) {
                     $index = $i;
                 }
             }
@@ -131,7 +131,7 @@ class Experiment
             return $index;
         }
 
-        return $key;
+        return (int)$key;
     }
 
     /**
@@ -252,12 +252,14 @@ class Experiment
      * 
      * This is the percentual chance that a new user will be included in the experiment
      *
-     * @param int $percent
+     * @param int|string $percent
      * 
      * @return self
      */
     public function setAllocation($percent)
     {
+        $percent = (int)$percent;
+
         if ($percent < 0 || $percent > 100) {
             throw new \Exception('Invalid $percent (value must be between 0 and 100)');
         }
