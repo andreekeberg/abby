@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.1.1] - 2020-05-20
+
+### Changed
+
+- Allow looser typing across all methods (casting all numeric strings to integers and floats internally)
+
 ## [1.1.0] - 2020-05-14
 
 ### Added
@@ -21,5 +27,6 @@ All notable changes to this project will be documented in this file.
 
 Initial release
 
+[1.1.1]: https://github.com/andreekeberg/abby/releases/tag/1.1.1
 [1.1.0]: https://github.com/andreekeberg/abby/releases/tag/1.1.0
 [1.0.0]: https://github.com/andreekeberg/abby/releases/tag/1.0.0
