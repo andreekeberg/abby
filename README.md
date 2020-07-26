@@ -1,4 +1,4 @@
-# 🙋‍♀️ Abby
+# 🙋🏽‍♀️ Abby
 
 [![Latest Stable Version](https://poser.pugx.org/andreekeberg/abby/v/stable)](https://packagist.org/packages/andreekeberg/abby) [![Total Downloads](https://poser.pugx.org/andreekeberg/abby/downloads)](https://packagist.org/packages/andreekeberg/abby) [![License](https://poser.pugx.org/andreekeberg/abby/license)](https://packagist.org/packages/andreekeberg/abby)
 
